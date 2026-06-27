@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminar Hasil Skripsi - SMP Negeri 30 Makassar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --dark-green: #0F5132;
+            --light-green: #A8D5BA;
+            --white: #FFFFFF;
+            --text-dark: #1a1a1a;
+            --text-gray: #555555;
+            --bg-light: #F8FBF9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #e8e8e8;
+            overflow: hidden;
+        }
+
+        .presentation {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: none;
+            padding: 50px 70px;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            opacity: 1;
+        }
+
+        /* Logo Placeholder */
+        .logo-placeholder {
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 3px solid var(--dark-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-green);
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.2;
+            background: var(--white);
+            z-index: 10;
+        }
+
+        /* Page Number */
+        .page-number {
+            position: absolute;
+            bottom: 25px;
+            right: 50px;
+            font-size: 12px;
+            color: var(--dark-green);
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        /* Decorative elements */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--light-green);
+            opacity: 0.15;
+        }
+
+        .deco-line {
+            position: absolute;
+            height: 4px;
+            background: var(--dark-green);
+            border-radius: 2px;
+        }
+
+        /* Slide 1 - Title */
+        .slide-1 {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide-1 .deco-circle-1 {
+            width: 400px;
+            height: 400px;
+            top: -100px;
+            right: -100px;
+        }
+
+        .slide-1 .deco-circle-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -50px;
+            left: -50px;
+            opacity: 0.1;
+        }
+
+        .slide-1 .title-badge {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .slide-1 h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            line-height: 1.3;
+            max-width: 900px;
+        }
+
+        .slide-1 .subtitle {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 50px;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        .slide-1 .info-grid {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .slide-1 .info-card {
+            background: var(--bg-light);
+            border: 2px solid var(--light-green);
+            border-radius: 16px;
+            padding: 20px 30px;
+            min-width: 200px;
+            text-align: left;
+        }
+
+        .slide-1 .info-card i {
+            color: var(--dark-green);
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .slide-1 .info-card .label {
+            font-size: 11px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .slide-1 .info-card .value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .slide-1 .methods {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .slide-1 .method-tag {
+            background: var(--white);
+            border: 2px solid var(--dark-green);
+            color: var(--dark-green);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* General Slide Header */
+        .slide-header {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .slide-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-green);
+            padding-bottom: 12px;
+        }
+
+        .slide-header .header-line {
+            width: 80px;
+            height: 4px;
+            background: var(--dark-green);
+            border-radius: 2px;
+        }
+
+        .slide-header .header-accent {
+            position: absolute;
+            top: -10px;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: var(--light-green);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: flex;
+            gap: 50px;
+            flex: 1;
+            align-items: center;
+        }
+
+        .col-left, .col-right {
+            flex: 1;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 25px;
+            border-left: 5px solid var(--dark-green);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--dark-green);
+            margin-bottom: 8px;
+        }
+
+        .card p, .card li {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .card ul li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--dark-green);
+            font-size: 11px;
+        }
+
+        /* Vision Box */
+        .vision-box {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-box::before {
+            content: "";
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: var(--light-green);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .vision-box i {
+            font-size: 30px;
+            margin-bottom: 15px;
+            color: var(--light-green);
+        }
+
+        .vision-box p {
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* Three Cards */
+        .three-cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .three-cards .card {
+            flex: 1;
+            text-align: center;
+            border-left: none;
+            border-top: 5px solid var(--dark-green);
+        }
+
+        .three-cards .card i {
+            font-size: 28px;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+        }
+
+        /* SmartArt Style */
+        .smartart-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .smartart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-light);
+            padding: 18px 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--dark-green);
+        }
+
+        .smartart-item .icon-box {
+            width: 45px;
+            height: 45px;
+            background: var(--dark-green);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .smartart-item .text-box h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+
+        .smartart-item .text-box p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Comparison Diagram */
+        .comparison {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+            align-items: stretch;
+        }
+
+        .comparison-box {
+            flex: 1;
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid var(--light-green);
+            position: relative;
+        }
+
+        .comparison-box.highlight {
+            background: var(--dark-green);
+            color: var(--white);
+            border-color: var(--dark-green);
+        }
+
+        .comparison-box.highlight h3,
+        .comparison-box.highlight li {
+            color: var(--white);
+        }
+
+        .comparison-box h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comparison-box ul {
+            list-style: none;
+        }
+
+        .comparison-box li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(168, 213, 186, 0.3);
+            font-size: 14px;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .comparison-box li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--dark-green);
+        }
+
+        .result-box {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 20px 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            flex: 1;
+            justify-content: center;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding: 18px 0;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -24px;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            background: var(--dark-green);
+            border-radius: 50%;
+            transform: translateY(-50%);
+            border: 3px solid var(--light-green);
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: -19px;
+            top: 60%;
+            width: 2px;
+            height: 100%;
+            background: var(--light-green);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .timeline-item .num {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-green);
+            color: var(--white);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .timeline-item .content h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+
+        .timeline-item .content p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Circular Diagram */
+        .circle-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            position: relative;
+        }
+
+        .center-circle {
+            width: 140px;
+            height: 140px;
+            background: var(--dark-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 14px;
+            text-align: center;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(15, 81, 50, 0.3);
+        }
+
+        .orbit-item {
+            position: absolute;
+            width: 100px;
+            text-align: center;
+        }
+
+        .orbit-item .orbit-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: 3px solid var(--dark-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            color: var(--dark-green);
+            font-size: 18px;
+        }
+
+        .orbit-item .orbit-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--dark-green);
+            background: var(--white);
+            padding: 4px 10px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .orbit-1 { top: 10%; left: 50%; transform: translateX(-50%); }
+        .orbit-2 { top: 50%; right: 10%; transform: translateY(-50%); }
+        .orbit-3 { bottom: 10%; left: 50%; transform: translateX(-50%); }
+        .orbit-4 { top: 50%; left: 10%; transform: translateY(-50%); }
+        .orbit-5 { top: 15%; right: 20%; }
+
+        /* Flowchart */
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .flow-item {
+            background: var(--bg-light);
+            border: 2px solid var(--dark-green);
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark-green);
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .flow-arrow {
+            color: var(--dark-green);
+            font-size: 20px;
+            padding: 5px 0;
+        }
+
+        /* Four Boxes */
+        .four-boxes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .four-boxes .box {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 2px solid var(--light-green);
+            transition: all 0.3s;
+        }
+
+        .four-boxes .box:hover {
+            border-color: var(--dark-green);
+            transform: translateY(-3px);
+        }
+
+        .four-boxes .box i {
+            font-size: 32px;
+            color: var(--dark-green);
+            margin-bottom: 12px;
+        }
+
+        .four-boxes .box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 6px;
+        }
+
+        .four-boxes .box p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Progress Diagram */
+        .progress-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .progress-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .progress-bar-bg {
+            flex: 1;
+            height: 35px;
+            background: var(--bg-light);
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--dark-green);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            transition: width 1s ease;
+        }
+
+        .progress-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* Triangle Diagram */
+        .triangle-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            justify-content: center;
+            position: relative;
+        }
+
+        .triangle-row {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .triangle-node {
+            width: 140px;
+            height: 140px;
+            background: var(--white);
+            border: 3px solid var(--dark-green);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(15, 81, 50, 0.1);
+        }
+
+        .triangle-node i {
+            font-size: 28px;
+            color: var(--dark-green);
+            margin-bottom: 8px;
+        }
+
+        .triangle-node span {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark-green);
+        }
+
+        .triangle-result {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 20px 50px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+        }
+
+        .triangle-arrow-down {
+            color: var(--dark-green);
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        /* Five Boxes */
+        .five-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .five-boxes .box {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 5px solid var(--dark-green);
+        }
+
+        .five-boxes .box .num {
+            width: 32px;
+            height: 32px;
+            background: var(--dark-green);
+            color: var(--white);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .five-boxes .box p {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Closing Slide */
+        .slide-closing {
+            background: var(--dark-green) !important;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .slide-closing .deco-circle {
+            background: var(--light-green);
+            opacity: 0.1;
+        }
+
+        .slide-closing h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .slide-closing .arabic {
+            font-size: 22px;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 30px;
+        }
+
+        .slide-closing .ornament {
+            font-size: 40px;
+            color: var(--light-green);
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        .nav-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            background: rgba(15, 81, 50, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        .nav-controls button {
+            background: transparent;
+            border: 2px solid var(--light-green);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .nav-controls button:hover {
+            background: var(--light-green);
+            color: var(--dark-green);
+        }
+
+        .nav-controls .slide-counter {
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 0 15px;
+        }
+
+        /* Cause-Effect Diagram */
+        .cause-effect {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .cause-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .cause-icon {
+            width: 45px;
+            height: 45px;
+            background: #ff6b6b;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .cause-text {
+            flex: 1;
+            background: var(--bg-light);
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            border-left: 4px solid #ff6b6b;
+        }
+
+        /* Characteristic Cards */
+        .char-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            flex: 1;
+        }
+
+        .char-card {
+            background: var(--white);
+            border: 2px solid var(--light-green);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .char-card .icon-wrap {
+            width: 60px;
+            height: 60px;
+            background: var(--dark-green);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .char-card .icon-wrap i {
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        .char-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark-green);
+            margin-bottom: 8px;
+        }
+
+        .char-card p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Analysis Columns */
+        .analysis-cols {
+            display: flex;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .analysis-col {
+            flex: 1;
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .analysis-col.match {
+            border: 2px solid var(--dark-green);
+        }
+
+        .analysis-col.challenge {
+            border: 2px solid #e74c3c;
+        }
+
+        .analysis-col h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-col.match h3 { color: var(--dark-green); }
+        .analysis-col.challenge h3 { color: #e74c3c; }
+
+        .analysis-col ul {
+            list-style: none;
+        }
+
+        .analysis-col li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--text-gray);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .analysis-col li:last-child {
+            border-bottom: none;
+        }
+
+        /* Bottom reason bar */
+        .bottom-bar {
+            background: var(--dark-green);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .bottom-bar i {
+            font-size: 24px;
+        }
+
+        .bottom-bar h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .bottom-bar p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* Print styles */
+        @media print {
+            .slide {
+                page-break-after: always;
+                display: flex !important;
+                opacity: 1 !important;
+                position: relative;
+            }
+            .nav-controls { display: none; }
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .keyboard-hint.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation">
+
+<!-- SLIDE 1: Judul -->
+<div class="slide slide-1 active">
+    <div class="deco-circle deco-circle-1"></div>
+    <div class="deco-circle deco-circle-2"></div>
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">1</div>
+
+    <div class="title-badge">Seminar Hasil Skripsi</div>
+    <h1>HASIL PENELITIAN DAN PEMBAHASAN</h1>
+    <p class="subtitle">Model Pembelajaran Pendidikan Agama Islam dalam Menumbuhkan Kesadaran Religius Peserta Didik di SMP Negeri 30 Makassar</p>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="label">Lokasi</div>
+            <div class="value">UPT SPF SMP Negeri 30 Makassar</div>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-calendar-alt"></i>
+            <div class="label">Waktu</div>
+            <div class="value">3 – 12 Juni 2026</div>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-microscope"></i>
+            <div class="label">Metode</div>
+            <div class="value">Kualitatif Deskriptif</div>
+        </div>
+    </div>
+
+    <div class="methods">
+        <div class="method-tag"><i class="fas fa-eye" style="margin-right:8px"></i>Observasi</div>
+        <div class="method-tag"><i class="fas fa-comments" style="margin-right:8px"></i>Wawancara</div>
+        <div class="method-tag"><i class="fas fa-file-alt" style="margin-right:8px"></i>Dokumentasi</div>
+    </div>
+</div>
+
+<!-- SLIDE 2: Profil Lokasi -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">2</div>
+    <div class="slide-header">
+        <h2>Profil Lokasi Penelitian</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="two-col">
+        <div class="col-left">
+            <div class="card">
+                <h3><i class="fas fa-school" style="margin-right:10px"></i>SMP Negeri 30 Makassar</h3>
+                <ul>
+                    <li>Kecamatan Tamalanrea</li>
+                    <li>Berdiri Tahun 1994</li>
+                    <li>Akreditasi A</li>
+                    <li>Kepala Sekolah: Hijriah Enang, S.Pd., M.Pd.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-right" style="text-align:center;">
+            <div style="width:200px;height:200px;background:var(--bg-light);border-radius:20px;border:3px dashed var(--light-green);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="fas fa-building" style="font-size:60px;color:var(--dark-green);opacity:0.4;"></i>
+            </div>
+            <p style="margin-top:15px;font-size:13px;color:var(--text-gray);">Ilustrasi Gedung Sekolah</p>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <i class="fas fa-lightbulb"></i>
+        <div>
+            <h4>Alasan Pemilihan Lokasi</h4>
+            <p>Lingkungan religius, Guru PAI aktif, dan mendukung penelitian</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: Visi dan Misi -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">3</div>
+    <div class="slide-header">
+        <h2>Visi dan Misi Sekolah</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="vision-box">
+        <i class="fas fa-star"></i>
+        <p>"Mewujudkan peserta didik yang cerdas, berkarakter, dan berakhlak mulia."</p>
+    </div>
+
+    <div class="three-cards">
+        <div class="card">
+            <i class="fas fa-book-open"></i>
+            <h3>Akademik</h3>
+            <p>Kurikulum Merdeka</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-graduate"></i>
+            <h3>Karakter</h3>
+            <p>Pembiasaan Positif</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-praying-hands"></i>
+            <h3>Spiritual</h3>
+            <p>Religius & Berakhlak</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: Perencanaan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">4</div>
+    <div class="slide-header">
+        <h2>Perencanaan Model Pembelajaran PAI</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="smartart-container">
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-clipboard-list"></i></div>
+            <div class="text-box">
+                <h4>Penyusunan RPP</h4>
+                <p>Rencana Pelaksanaan Pembelajaran terstruktur</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-brain"></i></div>
+            <div class="text-box">
+                <h4>Aspek Kognitif</h4>
+                <p>Pemahaman konsep dan materi keagamaan</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-heart"></i></div>
+            <div class="text-box">
+                <h4>Aspek Afektif</h4>
+                <p>Penanaman nilai dan sikap religius</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-hands"></i></div>
+            <div class="text-box">
+                <h4>Aspek Psikomotorik</h4>
+                <p>Praktik ibadah dan pembiasaan</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-pray"></i></div>
+            <div class="text-box">
+                <h4>Doa & Shalat Berjamaah</h4>
+                <p>Pembentukan karakter religius melalui ritual</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: Model Pembelajaran -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">5</div>
+    <div class="slide-header">
+        <h2>Model Pembelajaran yang Digunakan</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="comparison">
+        <div class="comparison-box">
+            <h3><i class="fas fa-brain" style="margin-right:10px"></i>Deep Learning</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i>Memahami makna</li>
+                <li><i class="fas fa-check-circle"></i>Refleksi diri</li>
+                <li><i class="fas fa-check-circle"></i>Kontekstual</li>
+            </ul>
+        </div>
+        <div class="comparison-arrow">
+            <i class="fas fa-plus"></i>
+        </div>
+        <div class="comparison-box highlight">
+            <h3><i class="fas fa-users" style="margin-right:10px"></i>Cooperative Learning</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i>Diskusi kelompok</li>
+                <li><i class="fas fa-check-circle"></i>Kerja sama</li>
+                <li><i class="fas fa-check-circle"></i>Presentasi</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="result-box">
+        <i class="fas fa-arrow-down" style="margin-right:10px"></i>
+        Hasil Pembelajaran bermakna dan religius
+    </div>
+</div>
+
+<!-- SLIDE 6: Kegiatan Pembukaan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">6</div>
+    <div class="slide-header">
+        <h2>Pelaksanaan Pembelajaran — Kegiatan Pembukaan</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="num">1</div>
+            <div class="content">
+                <h4>Salam</h4>
+                <p>Membuka pembelajaran dengan salam islami</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="num">2</div>
+            <div class="content">
+                <h4>Doa</h4>
+                <p>Doa sebelum memulai kegiatan belajar</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="num">3</div>
+            <div class="content">
+                <h4>Apersepsi</h4>
+                <p>Mengaitkan materi dengan pengalaman siswa</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="num">4</div>
+            <div class="content">
+                <h4>Koneksi Pengalaman</h4>
+                <p>Menghubungkan materi dengan kehidupan nyata</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: Kegiatan Inti -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">7</div>
+    <div class="slide-header">
+        <h2>Pelaksanaan Pembelajaran — Kegiatan Inti</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="circle-diagram">
+        <div class="center-circle">Kegiatan<br>Inti</div>
+        <div class="orbit-item orbit-1">
+            <div class="orbit-icon"><i class="fas fa-comments"></i></div>
+            <div class="orbit-text">Diskusi</div>
+        </div>
+        <div class="orbit-item orbit-2">
+            <div class="orbit-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="orbit-text">Tanya Jawab</div>
+        </div>
+        <div class="orbit-item orbit-3">
+            <div class="orbit-icon"><i class="fas fa-lightbulb"></i></div>
+            <div class="orbit-text">Refleksi</div>
+        </div>
+        <div class="orbit-item orbit-4">
+            <div class="orbit-icon"><i class="fas fa-search"></i></div>
+            <div class="orbit-text">Analisis Masalah</div>
+        </div>
+        <div class="orbit-item orbit-5">
+            <div class="orbit-icon"><i class="fas fa-link"></i></div>
+            <div class="orbit-text">Kontekstual</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: Kegiatan Penutup -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">8</div>
+    <div class="slide-header">
+        <h2>Pelaksanaan Pembelajaran — Kegiatan Penutup</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="flowchart">
+        <div class="flow-item"><i class="fas fa-book" style="margin-right:10px"></i>Materi</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-check-double" style="margin-right:10px"></i>Kesimpulan</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-star" style="margin-right:10px"></i>Penguatan Nilai Agama</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-hand-holding-heart" style="margin-right:10px"></i>Motivasi Beramal</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-home" style="margin-right:10px"></i>Penerapan dalam Kehidupan</div>
+    </div>
+</div>
+
+<!-- SLIDE 9: Pembiasaan dan Keteladanan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">9</div>
+    <div class="slide-header">
+        <h2>Pembiasaan dan Keteladanan Guru</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="two-col">
+        <div class="col-left">
+            <div class="card">
+                <h3><i class="fas fa-chalkboard-teacher" style="margin-right:10px"></i>Peran Guru</h3>
+                <ul>
+                    <li>Guru sebagai teladan utama</li>
+                    <li>Bahasa santun dalam berkomunikasi</li>
+                    <li>Sikap sopan dan ramah</li>
+                    <li>Shalat Zuhur berjamaah</li>
+                    <li>Pembiasaan religius harian</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-right" style="text-align:center;">
+            <div style="width:220px;height:220px;background:var(--bg-light);border-radius:50%;border:4px solid var(--light-green);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="fas fa-chalkboard-teacher" style="font-size:80px;color:var(--dark-green);opacity:0.5;"></i>
+            </div>
+            <p style="margin-top:15px;font-size:13px;color:var(--text-gray);">Ilustrasi Guru sebagai Teladan</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: Kegiatan Keagamaan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">10</div>
+    <div class="slide-header">
+        <h2>Kegiatan Keagamaan di Sekolah</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="two-col">
+        <div class="col-left">
+            <div class="smartart-container">
+                <div class="smartart-item">
+                    <div class="icon-box"><i class="fas fa-mosque"></i></div>
+                    <div class="text-box">
+                        <h4>Shalat Zuhur Berjamaah</h4>
+                        <p>Dilaksanakan secara rutin setiap hari</p>
+                    </div>
+                </div>
+                <div class="smartart-item">
+                    <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                    <div class="text-box">
+                        <h4>Pembinaan Religius</h4>
+                        <p>Bimbingan rohani oleh guru PAI</p>
+                    </div>
+                </div>
+                <div class="smartart-item">
+                    <div class="icon-box"><i class="fas fa-place-of-worship"></i></div>
+                    <div class="text-box">
+                        <h4>Musholla Sekolah</h4>
+                        <p>Fasilitas pendukung kegiatan ibadah</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-right" style="text-align:center;">
+            <div style="width:200px;height:200px;background:var(--bg-light);border-radius:20px;border:3px dashed var(--light-green);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="fas fa-mosque" style="font-size:70px;color:var(--dark-green);opacity:0.4;"></i>
+            </div>
+            <p style="margin-top:15px;font-size:13px;color:var(--text-gray);">Ikon Masjid Sekolah</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: Dampak terhadap Peserta Didik -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">11</div>
+    <div class="slide-header">
+        <h2>Dampak terhadap Peserta Didik</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="progress-diagram">
+        <div class="progress-item">
+            <div class="progress-icon"><i class="fas fa-praying-hands"></i></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 90%;">Sikap religius meningkat</div>
+            </div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-icon"><i class="fas fa-heart"></i></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 85%;">Kesadaran ibadah meningkat</div>
+            </div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 88%;">Menghormati guru</div>
+            </div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-icon"><i class="fas fa-clock"></i></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 82%;">Disiplin kegiatan agama</div>
+            </div>
+        </div>
+        <div class="progress-item">
+            <div class="progress-icon"><i class="fas fa-smile"></i></div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" style="width: 92%;">Perubahan positif</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12: Perspektif Peserta Didik -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">12</div>
+    <div class="slide-header">
+        <h2>Perspektif Peserta Didik</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="two-col">
+        <div class="col-left">
+            <div class="card">
+                <h3><i class="fas fa-child" style="margin-right:10px"></i>Pandangan Siswa</h3>
+                <ul>
+                    <li>Guru memberi teladan yang baik</li>
+                    <li>Pembiasaan doa sehari-hari</li>
+                    <li>Pentingnya shalat tepat waktu</li>
+                    <li>Menghormati orang tua</li>
+                    <li>Senang shalat berjamaah</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-right" style="text-align:center;">
+            <div style="width:220px;height:220px;background:var(--bg-light);border-radius:50%;border:4px solid var(--light-green);display:flex;align-items:center;justify-content:center;margin:0 auto;">
+                <i class="fas fa-child" style="font-size:80px;color:var(--dark-green);opacity:0.5;"></i>
+            </div>
+            <p style="margin-top:15px;font-size:13px;color:var(--text-gray);">Ilustrasi Peserta Didik</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 13: Indikator Kesadaran Religius -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">13</div>
+    <div class="slide-header">
+        <h2>Indikator Kesadaran Religius</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="four-boxes">
+        <div class="box">
+            <i class="fas fa-mosque"></i>
+            <h4>Taat Beribadah</h4>
+            <p>Melaksanakan ibadah dengan konsisten dan ikhlas</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hand-holding-heart"></i>
+            <h4>Akhlakul Karimah</h4>
+            <p>Berperilaku mulia dalam kehidupan sehari-hari</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-balance-scale"></i>
+            <h4>Tanggung Jawab Moral</h4>
+            <p>Bertanggung jawab atas perbuatan dan pilihan</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-eye"></i>
+            <h4>Muraqabah</h4>
+            <p>Kesadaran bahwa Allah selalu mengawasi</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 14: Faktor Pendukung -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">14</div>
+    <div class="slide-header">
+        <h2>Faktor Pendukung</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="smartart-container">
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-school"></i></div>
+            <div class="text-box">
+                <h4>Dukungan Sekolah</h4>
+                <p>Komitmen pihak sekolah terhadap pembinaan karakter religius</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-place-of-worship"></i></div>
+            <div class="text-box">
+                <h4>Musholla</h4>
+                <p>Tersedianya fasilitas ibadah yang memadai</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-users"></i></div>
+            <div class="text-box">
+                <h4>Kerja Sama Guru</h4>
+                <p>Sinergi antar guru dalam pembiasaan religius</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-smile-beam"></i></div>
+            <div class="text-box">
+                <h4>Antusias Siswa</h4>
+                <p>Partisipasi aktif peserta didik dalam kegiatan keagamaan</p>
+            </div>
+        </div>
+        <div class="smartart-item">
+            <div class="icon-box"><i class="fas fa-redo"></i></div>
+            <div class="text-box">
+                <h4>Pembiasaan Religius</h4>
+                <p>Kegiatan rutin yang membentuk kebiasaan positif</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 15: Faktor Penghambat -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">15</div>
+    <div class="slide-header">
+        <h2>Faktor Penghambat</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="cause-effect">
+        <div class="cause-item">
+            <div class="cause-icon"><i class="fas fa-home"></i></div>
+            <div class="cause-text">Latar belakang keluarga yang kurang mendukung</div>
+        </div>
+        <div class="cause-item">
+            <div class="cause-icon"><i class="fas fa-user-friends"></i></div>
+            <div class="cause-text">Pergaulan di luar lingkungan sekolah</div>
+        </div>
+        <div class="cause-item">
+            <div class="cause-icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="cause-text">Pengaruh media sosial dan teknologi</div>
+        </div>
+        <div class="cause-item">
+            <div class="cause-icon"><i class="fas fa-user-times"></i></div>
+            <div class="cause-text">Kurangnya dukungan orang tua</div>
+        </div>
+        <div class="cause-item">
+            <div class="cause-icon"><i class="fas fa-battery-quarter"></i></div>
+            <div class="cause-text">Motivasi siswa yang masih perlu ditingkatkan</div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 16: Upaya Mengatasi Hambatan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">16</div>
+    <div class="slide-header">
+        <h2>Upaya Mengatasi Hambatan</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="flowchart">
+        <div class="flow-item"><i class="fas fa-hands-helping" style="margin-right:10px"></i>Pendampingan</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-bullhorn" style="margin-right:10px"></i>Motivasi</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-link" style="margin-right:10px"></i>Pembelajaran Kontekstual</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-comments" style="margin-right:10px"></i>Komunikasi Orang Tua</div>
+        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+        <div class="flow-item"><i class="fas fa-handshake" style="margin-right:10px"></i>Sinergi Sekolah & Keluarga</div>
+    </div>
+</div>
+
+<!-- SLIDE 17: Pembahasan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">17</div>
+    <div class="slide-header">
+        <h2>Pembahasan</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="comparison">
+        <div class="comparison-box" style="text-align:center;">
+            <i class="fas fa-brain" style="font-size:30px;color:var(--dark-green);margin-bottom:10px;"></i>
+            <h3>Deep Learning</h3>
+        </div>
+        <div class="comparison-box" style="text-align:center;">
+            <i class="fas fa-users" style="font-size:30px;color:var(--dark-green);margin-bottom:10px;"></i>
+            <h3>Cooperative Learning</h3>
+        </div>
+        <div class="comparison-box" style="text-align:center;">
+            <i class="fas fa-redo" style="font-size:30px;color:var(--dark-green);margin-bottom:10px;"></i>
+            <h3>Pembiasaan</h3>
+        </div>
+        <div class="comparison-box" style="text-align:center;">
+            <i class="fas fa-chalkboard-teacher" style="font-size:30px;color:var(--dark-green);margin-bottom:10px;"></i>
+            <h3>Keteladanan</h3>
+        </div>
+    </div>
+
+    <div class="result-box" style="margin-top:30px;">
+        <i class="fas fa-arrow-down" style="margin-right:10px;"></i>
+        Kesadaran Religius Peserta Didik
+    </div>
+</div>
+
+<!-- SLIDE 18: Karakteristik Model -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">18</div>
+    <div class="slide-header">
+        <h2>Karakteristik Model</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="char-cards">
+        <div class="char-card">
+            <div class="icon-wrap"><i class="fas fa-link"></i></div>
+            <h4>Kontekstual</h4>
+            <p>Materi pembelajaran dikaitkan dengan konteks kehidupan nyata siswa</p>
+        </div>
+        <div class="char-card">
+            <div class="icon-wrap"><i class="fas fa-heart"></i></div>
+            <h4>Afektif</h4>
+            <p>Penekanan pada pembentukan sikap dan nilai keagamaan</p>
+        </div>
+        <div class="char-card">
+            <div class="icon-wrap"><i class="fas fa-praying-hands"></i></div>
+            <h4>Praktik Ibadah</h4>
+            <p>Pembiasaan praktik ibadah sebagai bagian pembelajaran</p>
+        </div>
+        <div class="char-card">
+            <div class="icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
+            <h4>Keteladanan Guru</h4>
+            <p>Guru sebagai role model dalam perilaku religius</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 19: Analisis Teori -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">19</div>
+    <div class="slide-header">
+        <h2>Analisis Teori</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="analysis-cols">
+        <div class="analysis-col match">
+            <h3><i class="fas fa-check-circle"></i> Sesuai Teori</h3>
+            <ul>
+                <li><i class="fas fa-check" style="color:var(--dark-green)"></i>Faktor Pendukung</li>
+                <li><i class="fas fa-check" style="color:var(--dark-green)"></i>Tantangan</li>
+            </ul>
+        </div>
+        <div class="analysis-col challenge">
+            <h3><i class="fas fa-exclamation-triangle"></i> Faktor Penghambat</h3>
+            <ul>
+                <li><i class="fas fa-times" style="color:#e74c3c"></i>Globalisasi</li>
+                <li><i class="fas fa-times" style="color:#e74c3c"></i>Teknologi</li>
+                <li><i class="fas fa-times" style="color:#e74c3c"></i>Lingkungan</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 20: Sinergi -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">20</div>
+    <div class="slide-header">
+        <h2>Sinergi Sekolah, Guru, dan Orang Tua</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="triangle-diagram">
+        <div class="triangle-row">
+            <div class="triangle-node">
+                <i class="fas fa-school"></i>
+                <span>Sekolah</span>
+            </div>
+            <div class="triangle-node">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Guru</span>
+            </div>
+            <div class="triangle-node">
+                <i class="fas fa-home"></i>
+                <span>Orang Tua</span>
+            </div>
+        </div>
+        <div class="triangle-arrow-down"><i class="fas fa-arrow-down"></i></div>
+        <div class="triangle-result">
+            <i class="fas fa-star" style="margin-right:10px"></i>
+            Kesadaran Religius Peserta Didik
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 21: Kesimpulan -->
+<div class="slide">
+    <div class="logo-placeholder">LOGO</div>
+    <div class="page-number">21</div>
+    <div class="slide-header">
+        <h2>Kesimpulan</h2>
+        <div class="header-line"></div>
+        <div class="header-accent"></div>
+    </div>
+
+    <div class="five-boxes">
+        <div class="box">
+            <div class="num">1</div>
+            <p>Deep Learning + Cooperative Learning efektif menumbuhkan kesadaran religius</p>
+        </div>
+        <div class="box">
+            <div class="num">2</div>
+            <p>Pembiasaan & Keteladanan guru berperan penting dalam pembentukan karakter</p>
+        </div>
+        <div class="box">
+            <div class="num">3</div>
+            <p>Terjadi dampak positif terhadap sikap dan perilaku religius peserta didik</p>
+        </div>
+        <div class="box">
+            <div class="num">4</div>
+            <p>Aspek Muraqabah perlu ditingkatkan melalui pendekatan yang lebih intensif</p>
+        </div>
+        <div class="box">
+            <div class="num">5</div>
+            <p>Sinergi Sekolah, Guru, dan Orang Tua menjadi kunci keberhasilan</p>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 22: Penutup -->
+<div class="slide slide-closing">
+    <div class="deco-circle" style="width:300px;height:300px;top:-50px;left:-50px;"></div>
+    <div class="deco-circle" style="width:200px;height:200px;bottom:-30px;right:-30px;"></div>
+    <div class="logo-placeholder" style="border-color:var(--light-green);color:var(--light-green);">LOGO</div>
+    <div class="page-number" style="color:var(--light-green);">22</div>
+
+    <div class="ornament"><i class="fas fa-star-and-crescent"></i></div>
+    <h2>Terima Kasih</h2>
+    <p class="arabic">Wassalamu'alaikum Warahmatullahi Wabarakatuh.</p>
+</div>
+
+</div>
+
+<!-- Navigation -->
+<div class="nav-controls">
+    <button onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+    <div class="slide-counter"><span id="current">1</span> / <span id="total">22</span></div>
+    <button onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<div class="keyboard-hint" id="hint">Gunakan ← → atau spasi untuk navigasi</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    document.getElementById('total').textContent = totalSlides;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                setTimeout(() => slide.classList.add('active'), 50);
+            }
+        });
+        document.getElementById('current').textContent = index + 1;
+    }
+
+    function nextSlide() {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+    }
+
+    function prevSlide() {
+        if (currentSlide > 0) {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            prevSlide();
+        }
+    });
+
+    // Show keyboard hint briefly
+    setTimeout(() => {
+        document.getElementById('hint').classList.add('show');
+        setTimeout(() => {
+            document.getElementById('hint').classList.remove('show');
+        }, 4000);
+    }, 1000);
+</script>
+
+</body>
+                  </html>
